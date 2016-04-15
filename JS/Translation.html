@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>为 JSON 字符串创建对象</h2>
+
+<p id="demo"></p>
+
+<script>
+var text = '{"employees":[' +
+'{"firstName":"John","lastName":"Doe" },' +
+'{"firstName":"Anna","lastName":"Smith" },' +
+'{"firstName":"Peter","lastName":"Jones" }]}';
+var menuData = null;
+$.getJSON("name.json",function(backData){
+		var topMenuHtml = "";
+		menuData = backData.eng;
+		for(var i=0;i<menuData.length;i++){
+			if(i==0){
+				topMenuHtml+='<li class="active" menu_id="'+menuData[i].SingleUserAnalysis+'">';
+			}else{
+				topMenuHtml+='<li menu_id="'+menuData[i].SingleUserAnalysis+'">';
+			}
+			topMenuHtml+='<a href="javascript:void(0)" onClick="showPage(\''+menuData[i].SingleUserAnalysis+'\',\''+menuData[i].menu_name+'\',\''+menuData[i].menu_link+'\')">';
+			topMenuHtml+=menuData[i].menu_name+'</a></li>';
+		}
+		$(topMenuHtml).insertAfter(".nav-pills li:first");
+	});
+	
+obj = JSON.parse(text);
+document.getElementById("demo").innerHTML = menuData[0].SingleUserAnalysis;
+</script>
+
+</body>
+</html>
